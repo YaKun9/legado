@@ -1,4 +1,5 @@
 name: 构建并发布到Release
+
 on:
   push:
     branches:
@@ -29,13 +30,6 @@ jobs:
         run: |
           echo "version=$(date -d "8 hour" -u +3.%y.%m%d%H)" >> $GITHUB_OUTPUT
           echo "versionL=$(date -d "8 hour" -u +3.%y.%m%d%H%M)" >> $GITHUB_OUTPUT
-      - id: check
-        run: |
-          if [ ${{ secrets.LANZOU_ID }} ]; then
-            echo "lanzou=yes" >> $GITHUB_OUTPUT
-          fi
-          if [ ${{ secrets.BOT_TOKEN }} ]; then
-            echo "telegram=yes" >> $GITHUB_OUTPUT
 
   build:
     needs: prepare
